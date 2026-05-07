@@ -363,7 +363,6 @@ export default function Home() {
       {/* TESTIMONIAL */}
       <section
         className="relative py-32 overflow-hidden border-y border-[#C0392B]/20"
-        onViewportEnter={() => setQuoteStart(true)}
         data-testid="testimonial-section"
       >
         <motion.div
