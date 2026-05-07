@@ -1,0 +1,104 @@
+{
+  "theme": "dark",
+  "archetype": "5",
+  "archetype_name": "Jewel & Luxury / Dark Enterprise",
+  "mood": "Premium, immersive, Midjourney meets enterprise SaaS, cinematic depth, AI-forward.",
+  "colors": {
+    "background_base": "#050508",
+    "background_surface": "#0A0A0E",
+    "primary_accent": "#C0392B",
+    "primary_accent_glow": "rgba(192, 57, 43, 0.4)",
+    "text_primary": "#FFFFFF",
+    "text_secondary": "#A1A1AA",
+    "border_subtle": "rgba(255, 255, 255, 0.05)",
+    "glass_bg": "rgba(10, 10, 14, 0.6)",
+    "whatsapp_green": "#25D366"
+  },
+  "typography": {
+    "headings_font": "Cabinet Grotesk",
+    "body_font": "Manrope",
+    "mono_font": "JetBrains Mono",
+    "font_pairings_instructions": "Load Cabinet Grotesk for bold, dramatic headers. Use Manrope for high legibility body text. Use JetBrains Mono for tech-centric stats, overlines, and code-like elements.",
+    "hierarchy": {
+      "h1": "text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-none",
+      "h2": "text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight",
+      "h3": "text-2xl md:text-3xl font-semibold",
+      "body": "text-base md:text-lg text-zinc-400 leading-relaxed",
+      "overline": "text-xs font-mono tracking-[0.2em] text-[#C0392B] uppercase"
+    }
+  },
+  "visual_enhancers": {
+    "glassmorphism": "bg-[#0A0A0E]/60 backdrop-blur-xl border border-white/5",
+    "red_glow_hover": "hover:shadow-[0_0_30px_rgba(192,57,43,0.3)] hover:border-[#C0392B]/50 transition-all duration-500",
+    "red_glow_text": "drop-shadow-[0_0_15px_rgba(192,57,43,0.8)]",
+    "parallax_bg": "fixed inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#C0392B]/10 via-[#050508]/80 to-[#050508] z-[-1]",
+    "neural_network_nodes": "Use Framer Motion or pure CSS keyframes to create small glowing white/red dots connected by 1px opacity-20 lines in the background of the hero.",
+    "tilt_effect": "Implement 3D tilt effect on product cards using Framer Motion (useTransform on mouse move)."
+  },
+  "components": {
+    "navigation": "Sticky top-0 z-50 transition-all duration-300. Transparent at top, glassmorphism on scroll. Includes Logo ('Rol' in red, 'Play' in white), Links, EN/ES toggle, Social icons.",
+    "buttons": {
+      "primary": "bg-[#C0392B] hover:bg-[#A93226] text-white px-8 py-3 rounded-full font-medium transition-all shadow-[0_0_20px_rgba(192,57,43,0.4)] hover:shadow-[0_0_30px_rgba(192,57,43,0.6)]",
+      "secondary": "bg-white/5 hover:bg-white/10 text-white border border-white/10 px-8 py-3 rounded-full font-medium transition-all"
+    },
+    "cards": "Glassmorphism base, 1px subtle border. On hover: border tints red, subtle Y-axis lift, and red ambient shadow. Padding p-8 or p-10.",
+    "scroll_progress": "fixed top-0 left-0 h-1 bg-[#C0392B] z-[60] origin-left",
+    "whatsapp_orb": "fixed bottom-6 right-6 w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center cursor-pointer z-50 animate-pulse shadow-[0_0_20px_rgba(37,211,102,0.5)]"
+  },
+  "pages_blueprint": {
+    "Home": {
+      "hero": "Dramatic typography, dual CTAs, neural network abstract bg. Stats counters (91+ Clients, 8,750+ Users) below CTAs. Top 20 badge prominently displayed using an Award icon.",
+      "product_grid": "3 cards (Rolplay, Sales Simulator, Virtual Coach) with video placeholder thumbnails, glass layout, 3D hover tilt.",
+      "feature_section": "'Why train with AI simulators?'. Bento grid layout. Dark/red contrasts.",
+      "testimonial_band": "Full width, glowing red particles bg, typewriter animation for the quote.",
+      "contact_form": "Minimalist form with name/email + Send button in a sleek glass container."
+    },
+    "About Us": {
+      "mission": "Large cinematic text. 'Transforming sales training'.",
+      "globe_visualization": "Abstract CSS-based globe with pulsating red pins for Toronto, Monterrey, CDMX."
+    },
+    "Benefits": {
+      "header": "Massive bold statement: 'Practice the hard parts in private so you don't fail in public'.",
+      "accordion_cards": "Interactive expanding cards for 'Reduction of Bias', 'Multilingual Support', 'Real-Time Insights'."
+    },
+    "Achievements": {
+      "awards": "Two recognition awards styled as majestic glass plaques. Video embed placeholder with play button and red glow."
+    },
+    "Success Stories": {
+      "metrics": "Massive 3D metallic rank numbers (4th, 2nd). Cinematic scroll reveal."
+    },
+    "FAQs": {
+      "hero": "Futuristic dark hero with intersecting red light beams.",
+      "accordion": "Sleek, border-bottom only accordion items. Red plus/minus icons."
+    },
+    "Contact Us": {
+      "info": "Grid of locations (Toronto, Monterrey, CDMX). Minimalist icons for email, phone, social. Dark immersive map placeholder."
+    }
+  },
+  "media": {
+    "image_urls": [
+      {
+        "url": "https://images.unsplash.com/photo-1768791417486-1cd8b12079cc?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzF8MHwxfHNlYXJjaHwxfHxjaW5lbWF0aWMlMjByZWQlMjBhYnN0cmFjdCUyMGRhcmt8ZW58MHx8fHwxNzc4MTkzODgyfDA&ixlib=rb-4.1.0&q=85",
+        "category": "hero_background",
+        "description": "Abstract geometric structure with red accents. Use as a low-opacity background layer for the Hero section or FAQs hero."
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1775057154553-0f3e8902fea3?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODF8MHwxfHNlYXJjaHw0fHxkYXJrJTIwYWJzdHJhY3QlMjBuZXR3b3JrfGVufDB8fHx8MTc3ODE5Mzg4Mnww&ixlib=rb-4.1.0&q=85",
+        "category": "abstract_network",
+        "description": "Dark abstract lines/network. Use for the 'neural network' background feel on the About or Benefits page, heavily darkened."
+      }
+    ]
+  },
+  "instructions_to_main_agent": [
+    "Build a single-page application (SPA) using React state (e.g., const [currentPage, setCurrentPage] = useState('Home')) to toggle between the 7 required views/pages.",
+    "Implement the sticky navigation globally. It must control the state to switch views.",
+    "Include framer-motion for page transitions (fade/slide), scroll-triggered reveal animations (whileInView), and the 3D card tilt effect.",
+    "For the molecular network logo, use a text-based approach: `<span className='text-[#C0392B] font-bold'>Rol</span><span className='text-white font-bold'>Play</span>` alongside a Lucide `Network` icon.",
+    "Use Lucide-React icons heavily (e.g., Award for the Top 20 Badge, MapPin for locations, CheckCircle, MessageCircle for WhatsApp).",
+    "Add 'data-testid' to all interactive elements for testing.",
+    "For video placeholders, use a dark gray div with a subtle red border, an inset shadow, and a centered Play icon.",
+    "For the neural network background, implement a pure CSS particle effect using radial gradients and absolute positioning, or Framer Motion floating dots over the provided hero image.",
+    "Ensure all copy perfectly matches the requested text from the problem statement.",
+    "Apply Framer Motion `useScroll` for the top red progress bar."
+  ]
+}
