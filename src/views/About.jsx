@@ -7,120 +7,15 @@ import GlassCard from "@/components/GlassCard";
 import SectionHeader from "@/components/SectionHeader";
 import { PrimaryCTA } from "@/components/CTAButton";
 import { useTranslation } from "react-i18next";
-
-const locationCoords = [
-  { lat: 43.65, lng: -79.38, x: 38, y: 28 },
-  { lat: 25.67, lng: -100.31, x: 30, y: 48 },
-  { lat: 19.43, lng: -99.13, x: 32, y: 56 },
-];
-
-function GlobeViz({ locations }) {
-  // SVG globe with meridians, parallels, glowing pins
-  return (
-    <div className="relative aspect-square w-full max-w-[460px] mx-auto" data-testid="about-globe">
-      <motion.div
-        animate={{ rotate: 360 }}
-        transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-        className="absolute inset-0 rounded-full border border-dashed border-[#C0392B]/30"
-      />
-      <motion.div
-        animate={{ rotate: -360 }}
-        transition={{ duration: 90, repeat: Infinity, ease: "linear" }}
-        className="absolute inset-3 rounded-full border border-[#C0392B]/20"
-      />
-      <svg viewBox="0 0 200 200" className="absolute inset-6 w-[calc(100%-3rem)] h-[calc(100%-3rem)]">
-        <defs>
-          <radialGradient id="globeFill" cx="35%" cy="35%" r="70%">
-            <stop offset="0%" stopColor="#1a1a26" />
-            <stop offset="60%" stopColor="#0a0a14" />
-            <stop offset="100%" stopColor="#050508" />
-          </radialGradient>
-          <radialGradient id="globeGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="80%" stopColor="rgba(192,57,43,0)" />
-            <stop offset="100%" stopColor="rgba(192,57,43,0.25)" />
-          </radialGradient>
-        </defs>
-        <circle cx="100" cy="100" r="92" fill="url(#globeFill)" stroke="rgba(192,57,43,0.35)" strokeWidth="0.5" />
-        <circle cx="100" cy="100" r="92" fill="url(#globeGlow)" />
-        {/* Parallels */}
-        {[20, 40, 60, 80, 100, 120, 140, 160, 180].map((r) => {
-          const ry = (Math.abs(r - 100) / 100) * 90;
-          return (
-            <ellipse
-              key={`p-${r}`}
-              cx="100"
-              cy={r}
-              rx="92"
-              ry={Math.max(2, 92 - Math.abs(r - 100) * 0.5)}
-              fill="none"
-              stroke="rgba(192,57,43,0.15)"
-              strokeWidth="0.4"
-              transform={`scale(${Math.max(0.05, Math.cos((r - 100) * 0.018))} 1) translate(${(100 - 100 * Math.max(0.05, Math.cos((r - 100) * 0.018))) / Math.max(0.05, Math.cos((r - 100) * 0.018))} 0)`}
-              style={{ transformOrigin: `100px ${r}px` }}
-            />
-          );
-        })}
-        {/* Simpler horizontal latitude lines */}
-        {[30, 60, 100, 140, 170].map((y, i) => {
-          const dy = Math.abs(y - 100);
-          const w = Math.sqrt(92 * 92 - dy * dy);
-          return (
-            <line key={`lat-${i}`} x1={100 - w} x2={100 + w} y1={y} y2={y}
-              stroke="rgba(192,57,43,0.25)" strokeWidth="0.5" />
-          );
-        })}
-        {/* Meridians */}
-        {[-60, -30, 0, 30, 60].map((deg) => (
-          <ellipse
-            key={`m-${deg}`}
-            cx="100"
-            cy="100"
-            rx={Math.abs(92 * Math.cos((deg * Math.PI) / 180))}
-            ry="92"
-            fill="none"
-            stroke="rgba(192,57,43,0.18)"
-            strokeWidth="0.4"
-          />
-        ))}
-        {/* Equator emphasized */}
-        <line x1="8" x2="192" y1="100" y2="100" stroke="rgba(192,57,43,0.5)" strokeWidth="0.6" />
-        <ellipse cx="100" cy="100" rx="0.5" ry="92" stroke="rgba(192,57,43,0.5)" strokeWidth="0.6" fill="none" />
-      </svg>
-
-      {/* Pins (positioned on the visible left hemisphere — Americas) */}
-      {locations.map((l, i) => (
-        <motion.div
-          key={l.city}
-          initial={{ opacity: 0, scale: 0 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.6 + i * 0.2, type: "spring", stiffness: 180 }}
-          className="absolute z-10"
-          style={{ left: `${l.x}%`, top: `${l.y}%` }}
-        >
-          <div className="relative">
-            <span
-              className="absolute -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#C0392B]/40"
-              style={{ width: 22, height: 22, animation: "pulse-red 2s ease-in-out infinite" }}
-            />
-            <span className="relative block w-3 h-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#C0392B] shadow-[0_0_15px_rgba(192,57,43,0.9)]" />
-            <div className="absolute left-3 top-0 ml-1 whitespace-nowrap font-mono text-[10px] tracking-[0.2em] text-white uppercase glass rounded-full px-2.5 py-1">
-              {l.city}
-            </div>
-          </div>
-        </motion.div>
-      ))}
-    </div>
-  );
-}
+import GlobeLoader from "@/components/GlobeLoader";
 
 export default function About() {
   const { t } = useTranslation();
 
   const locations = [
-    { city: t('about.toronto'), country: t('about.canada'), ...locationCoords[0] },
-    { city: t('about.monterrey'), country: t('about.mexico'), ...locationCoords[1] },
-    { city: t('about.cdmx'), country: t('about.mexico'), ...locationCoords[2] },
+    { city: t('about.toronto'),   country: t('about.canada'), lat: 43.65,  lng: -79.38  },
+    { city: t('about.monterrey'), country: t('about.mexico'), lat: 25.67,  lng: -100.31 },
+    { city: t('about.cdmx'),      country: t('about.mexico'), lat: 19.43,  lng: -99.13  },
   ];
 
   return (
@@ -249,7 +144,7 @@ export default function About() {
               ))}
             </div>
           </div>
-          <GlobeViz locations={locations} />
+          <GlobeLoader />
         </div>
       </section>
     </PageShell>
