@@ -5,6 +5,7 @@ import ScrollProgress from "@/components/ScrollProgress";
 import WhatsAppOrb from "@/components/WhatsAppOrb";
 import I18nProvider from "@/components/I18nProvider";
 import Preloader from "@/components/Preloader";
+import ClickRipple from "@/components/ClickRipple";
 import { Toaster } from "sonner";
 
 export const metadata = {
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
       <body>
         <I18nProvider>
           <Preloader />
+          <ClickRipple />
           <ScrollProgress />
           <Navigation />
           {children}
