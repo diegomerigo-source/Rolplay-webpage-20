@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
 import WhatsAppOrb from "@/components/WhatsAppOrb";
 import I18nProvider from "@/components/I18nProvider";
+import Preloader from "@/components/Preloader";
 import { Toaster } from "sonner";
 
 export const metadata = {
@@ -17,6 +18,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <I18nProvider>
+          <Preloader />
           <ScrollProgress />
           <Navigation />
           {children}
