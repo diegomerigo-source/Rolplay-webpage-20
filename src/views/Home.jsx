@@ -155,12 +155,12 @@ export default function Home() {
           >
             <div className="flex flex-wrap items-end gap-10">
               <div data-testid="hero-stat-clients">
-                <AnimatedCounter value={91} suffix="+" className="font-display text-5xl md:text-6xl text-white" />
+                <AnimatedCounter value={100} suffix="+" className="font-display text-5xl md:text-6xl text-white" />
                 <div className="font-mono text-[10px] tracking-[0.25em] text-zinc-500 uppercase mt-1">{t('home.statClients')}</div>
               </div>
               <div className="w-px h-12 bg-white/10 hidden md:block" />
               <div data-testid="hero-stat-users">
-                <AnimatedCounter value={8750} suffix="+" className="font-display text-5xl md:text-6xl text-white" />
+                <AnimatedCounter value={100000} suffix="+" className="font-display text-5xl md:text-6xl text-white" />
                 <div className="font-mono text-[10px] tracking-[0.25em] text-zinc-500 uppercase mt-1">{t('home.statUsers')}</div>
               </div>
             </div>
