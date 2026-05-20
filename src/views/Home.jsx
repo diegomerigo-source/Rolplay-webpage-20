@@ -17,6 +17,8 @@ import GlassCard from "@/components/GlassCard";
 import { PrimaryCTA, GhostCTA } from "@/components/CTAButton";
 import SectionHeader from "@/components/SectionHeader";
 import ContactForm from "@/components/ContactForm";
+import BlogCard from "@/components/BlogCard";
+import Link from "next/link";
 import { useTranslation } from "react-i18next";
 
 const productIcons = [Brain, Target, Users];
@@ -37,7 +39,7 @@ function TypewriterQuote({ text, start }) {
   return <span>{out}<span className="cursor-blink" /></span>;
 }
 
-export default function Home() {
+export default function Home({ latestPosts = [] }) {
   const [quoteStart, setQuoteStart] = useState(false);
   const { t } = useTranslation();
 
@@ -436,6 +438,29 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* LATEST BLOG POSTS */}
+      {latestPosts.length > 0 && (
+        <section className="relative py-32 border-t border-white/5" data-testid="home-blog-section">
+          <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
+            <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12">
+              <SectionHeader
+                overline={t('blog.latestOverline')}
+                title={t('blog.latestTitle')}
+                body={t('blog.latestBody')}
+              />
+              <div className="shrink-0">
+                <PrimaryCTA href="/blog" icon={true}>{t('blog.latestCta')}</PrimaryCTA>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {latestPosts.map((post) => (
+                <BlogCard key={post._id} blog={post} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* CONTACT */}
       <section className="relative py-32" id="contact" data-testid="home-contact-section">

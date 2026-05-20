@@ -74,6 +74,7 @@ export default function Navigation() {
     { to: "/success-stories", label: t('nav.successStories') },
     { to: "/contact", label: t('nav.contact') },
     { to: "/faqs", label: t('nav.faqs') },
+    { to: "/blog", label: t('nav.blog') },
   ];
 
   useEffect(() => {

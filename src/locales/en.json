@@ -7,6 +7,7 @@
     "successStories": "Success Stories",
     "contact": "Contact Us",
     "faqs": "FAQs",
+    "blog": "Blog",
     "logoAlt": "RolPlay logo"
   },
   "footer": {
@@ -222,6 +223,22 @@
     "monterrey": "Monterrey",
     "mexico": "Mexico",
     "cdmx": "Ciudad de México"
+  },
+  "blog": {
+    "nav": "Blog",
+    "title": "Blog",
+    "subtitle": "Insights, analysis, and reports from the Rolplay team.",
+    "searchPlaceholder": "Search articles…",
+    "allTags": "All",
+    "readMore": "Read More",
+    "minRead": "min read",
+    "views": "views",
+    "relatedArticles": "Related Articles",
+    "noResults": "No articles found.",
+    "latestTitle": "Latest from the Blog",
+    "latestOverline": "// INSIGHTS",
+    "latestBody": "Fresh analysis and thought leadership from the Rolplay team.",
+    "latestCta": "View all articles"
   },
   "faqs": {
     "heroOverline": "KNOWLEDGE BASE",

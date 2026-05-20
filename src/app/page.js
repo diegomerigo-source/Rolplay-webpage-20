@@ -1,5 +1,7 @@
 import Home from "@/views/Home";
+import { getBlogs } from "@/lib/blog";
 
-export default function HomePage() {
-  return <Home />;
+export default async function HomePage() {
+  const { blogs } = await getBlogs({ limit: 3 }).catch(() => ({ blogs: [] }));
+  return <Home latestPosts={blogs} />;
 }

@@ -7,6 +7,7 @@
     "successStories": "Casos de Éxito",
     "contact": "Contáctanos",
     "faqs": "Preguntas frecuentes",
+    "blog": "Blog",
     "logoAlt": "Logo de RolPlay"
   },
   "footer": {
@@ -222,6 +223,22 @@
     "monterrey": "Monterrey",
     "mexico": "México",
     "cdmx": "Ciudad de México"
+  },
+  "blog": {
+    "nav": "Blog",
+    "title": "Blog",
+    "subtitle": "Perspectivas, análisis y reportes del equipo de Rolplay.",
+    "searchPlaceholder": "Buscar artículos…",
+    "allTags": "Todos",
+    "readMore": "Leer más",
+    "minRead": "min de lectura",
+    "views": "vistas",
+    "relatedArticles": "Artículos relacionados",
+    "noResults": "No se encontraron artículos.",
+    "latestTitle": "Lo último del Blog",
+    "latestOverline": "// PERSPECTIVAS",
+    "latestBody": "Análisis reciente y liderazgo de pensamiento del equipo de Rolplay.",
+    "latestCta": "Ver todos los artículos"
   },
   "faqs": {
     "heroOverline": "BASE DE CONOCIMIENTO",
