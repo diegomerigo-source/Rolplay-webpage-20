@@ -7,6 +7,7 @@ import BlogGrid from '@/components/BlogGrid';
 import BlogSearchBar from '@/components/BlogSearchBar';
 import BlogTagFilter from '@/components/BlogTagFilter';
 import BlogPagination from '@/components/BlogPagination';
+import NewsletterForm from '@/components/NewsletterForm';
 import { useTranslation } from 'react-i18next';
 
 export default function BlogList({ initialBlogs = [], initialPagination = { page: 1, totalPages: 1 }, tags = [] }) {
@@ -41,6 +42,23 @@ export default function BlogList({ initialBlogs = [], initialPagination = { page
 
           <BlogGrid blogs={initialBlogs} />
           <BlogPagination currentPage={initialPagination.page} totalPages={initialPagination.totalPages} />
+        </div>
+      </section>
+
+      {/* NEWSLETTER SUBSCRIPTION */}
+      <section className="relative py-24 border-t border-white/5 overflow-hidden" data-testid="blog-newsletter">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: 'radial-gradient(ellipse at center bottom, rgba(192,57,43,0.12), transparent 65%)' }}
+        />
+        <div className="relative max-w-[700px] mx-auto px-6 lg:px-10 text-center">
+          <div className="font-mono text-[10px] tracking-[0.2em] text-[#C0392B] uppercase mb-3">
+            {t('newsletter.overline')}
+          </div>
+          <h2 className="font-display text-3xl md:text-4xl mb-4">{t('newsletter.title')}</h2>
+          <p className="text-zinc-400 text-sm mb-8 max-w-md mx-auto leading-relaxed">{t('newsletter.body')}</p>
+          <NewsletterForm source="blog" className="mx-auto" />
+          <p className="mt-4 text-[11px] text-zinc-600 font-mono">{t('newsletter.footerCaption')}</p>
         </div>
       </section>
     </PageShell>

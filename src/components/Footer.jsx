@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Facebook, Linkedin, Mail, Phone, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import NewsletterForm from "@/components/NewsletterForm";
 
 export default function Footer() {
   const { t } = useTranslation();
@@ -20,6 +21,21 @@ export default function Footer() {
         style={{ background: "radial-gradient(circle, rgba(192,57,43,0.6), transparent 60%)" }}
       />
       <div className="relative max-w-[1400px] mx-auto px-6 lg:px-10 pt-20 pb-10">
+
+        {/* NEWSLETTER STRIP */}
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-14 pb-14 border-b border-white/5">
+          <div>
+            <div className="font-mono text-[10px] tracking-[0.2em] text-[#C0392B] uppercase mb-1">
+              {t('newsletter.overline')}
+            </div>
+            <p className="text-white font-display text-xl md:text-2xl leading-snug">
+              {t('newsletter.footerLabel')}
+            </p>
+            <p className="text-zinc-500 text-xs mt-1">{t('newsletter.footerCaption')}</p>
+          </div>
+          <NewsletterForm source="footer" className="md:w-[420px] shrink-0" />
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-14">
           <div className="md:col-span-5">
             <div className="font-display text-4xl md:text-5xl mb-4">

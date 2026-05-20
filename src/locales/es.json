@@ -263,5 +263,18 @@
     "stillCuriousOverline": "¿AÚN TIENES DUDAS?",
     "stillCuriousHeading": "Pregúntanos lo que quieras.",
     "stillCuriousBody": "Respondemos cada pregunta, generalmente el mismo día hábil."
+  },
+  "newsletter": {
+    "overline": "// MANTENTE AL DÍA",
+    "title": "Recibe insights en tu correo",
+    "body": "Artículos sobre ventas, coaching con IA y desarrollo de equipos comerciales — enviados al publicarse. Sin spam.",
+    "placeholder": "tu@correo.com",
+    "subscribe": "Suscribirme",
+    "subscribing": "Suscribiendo…",
+    "success": "¡Estás suscrito! Pronto recibirás nuestro próximo artículo.",
+    "duplicate": "Ese correo ya está suscrito.",
+    "error": "Algo salió mal. Inténtalo de nuevo.",
+    "footerLabel": "Suscríbete al blog",
+    "footerCaption": "Sin spam. Cancela cuando quieras."
   }
 }

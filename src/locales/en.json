@@ -263,5 +263,18 @@
     "stillCuriousOverline": "STILL CURIOUS?",
     "stillCuriousHeading": "Ask us anything.",
     "stillCuriousBody": "We answer every question, usually the same business day."
+  },
+  "newsletter": {
+    "overline": "// STAY UPDATED",
+    "title": "Get insights in your inbox",
+    "body": "New articles on sales, AI coaching, and commercial team development — delivered when published. No spam.",
+    "placeholder": "your@email.com",
+    "subscribe": "Subscribe",
+    "subscribing": "Subscribing…",
+    "success": "You're subscribed — look out for our next article!",
+    "duplicate": "That email is already subscribed.",
+    "error": "Something went wrong. Please try again.",
+    "footerLabel": "Subscribe to the blog",
+    "footerCaption": "No spam. Unsubscribe any time."
   }
 }
