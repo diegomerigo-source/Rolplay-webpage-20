@@ -1,3 +1,4 @@
+"use client";
 import { motion } from "framer-motion";
 import { Building2, Pill, ArrowRight } from "lucide-react";
 import PageShell from "@/components/PageShell";

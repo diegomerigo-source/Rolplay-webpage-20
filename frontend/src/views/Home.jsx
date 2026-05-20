@@ -1,3 +1,4 @@
+"use client";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Award, Sparkles, Play, Brain, Target, Users, Zap, ShieldCheck, Globe, BarChart3, Mail, Linkedin } from "lucide-react";

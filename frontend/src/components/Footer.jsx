@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+"use client";
+import Link from "next/link";
 import { Facebook, Linkedin, Mail, Phone, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -72,13 +73,13 @@ export default function Footer() {
             </div>
 
             <div className="mt-6 flex flex-wrap gap-2 text-xs">
-              <Link to="/" className="text-zinc-500 hover:text-white">Home</Link>
+              <Link href="/" className="text-zinc-500 hover:text-white">Home</Link>
               <span className="text-zinc-700">/</span>
-              <Link to="/about" className="text-zinc-500 hover:text-white">About</Link>
+              <Link href="/about" className="text-zinc-500 hover:text-white">About</Link>
               <span className="text-zinc-700">/</span>
-              <Link to="/benefits" className="text-zinc-500 hover:text-white">Benefits</Link>
+              <Link href="/benefits" className="text-zinc-500 hover:text-white">Benefits</Link>
               <span className="text-zinc-700">/</span>
-              <Link to="/contact" className="text-zinc-500 hover:text-white">Contact</Link>
+              <Link href="/contact" className="text-zinc-500 hover:text-white">Contact</Link>
             </div>
           </div>
         </div>

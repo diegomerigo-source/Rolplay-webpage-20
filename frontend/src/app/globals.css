@@ -51,6 +51,7 @@
     }
     html {
         scroll-behavior: smooth;
+        min-height: 100vh;
     }
     body {
         margin: 0;
@@ -60,6 +61,7 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         overflow-x: hidden;
+        min-height: 100vh;
     }
     ::selection {
         background: var(--accent);
@@ -178,7 +180,6 @@
     margin-left: 4px;
 }
 
-/* Hide scrollbar arrow visual */
 button:focus-visible,
 a:focus-visible {
     outline: 2px solid var(--accent);

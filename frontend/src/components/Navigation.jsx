@@ -1,5 +1,7 @@
+"use client";
 import { useEffect, useState } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Facebook, Linkedin } from "lucide-react";
 
@@ -47,7 +49,7 @@ export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [lang, setLang] = useState("EN");
-  const location = useLocation();
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -59,7 +61,7 @@ export default function Navigation() {
   useEffect(() => {
     setOpen(false);
     window.scrollTo({ top: 0, behavior: "instant" });
-  }, [location.pathname]);
+  }, [pathname]);
 
   return (
     <motion.nav
@@ -74,34 +76,31 @@ export default function Navigation() {
       data-testid="main-nav"
     >
       <div className="max-w-[1400px] mx-auto px-6 lg:px-10 h-[72px] flex items-center justify-between">
-        <Link to="/" data-testid="nav-logo-link">
+        <Link href="/" data-testid="nav-logo-link">
           <Logo />
         </Link>
 
         <div className="hidden lg:flex items-center gap-1">
-          {links.map((l) => (
-            <NavLink
-              key={l.to}
-              to={l.to}
-              data-testid={`nav-link-${l.label.toLowerCase().replace(/\s+/g, "-")}`}
-              className={({ isActive }) =>
-                `relative px-3.5 py-2 text-sm font-medium tracking-wide transition-colors ${
+          {links.map((l) => {
+            const isActive = pathname === l.to;
+            return (
+              <Link
+                key={l.to}
+                href={l.to}
+                data-testid={`nav-link-${l.label.toLowerCase().replace(/\s+/g, "-")}`}
+                className={`relative px-3.5 py-2 text-sm font-medium tracking-wide transition-colors ${
                   isActive ? "text-white" : "text-zinc-400 hover:text-white"
-                } group`
-              }
-            >
-              {({ isActive }) => (
-                <>
-                  {l.label}
-                  <span
-                    className={`absolute left-3.5 right-3.5 -bottom-0.5 h-px bg-[#C0392B] origin-left transition-transform duration-500 ${
-                      isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
-                    }`}
-                  />
-                </>
-              )}
-            </NavLink>
-          ))}
+                } group`}
+              >
+                {l.label}
+                <span
+                  className={`absolute left-3.5 right-3.5 -bottom-0.5 h-px bg-[#C0392B] origin-left transition-transform duration-500 ${
+                    isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                  }`}
+                />
+              </Link>
+            );
+          })}
         </div>
 
         <div className="flex items-center gap-3">
@@ -158,20 +157,21 @@ export default function Navigation() {
             data-testid="mobile-menu"
           >
             <div className="px-6 py-4 flex flex-col gap-1">
-              {links.map((l) => (
-                <NavLink
-                  key={l.to}
-                  to={l.to}
-                  data-testid={`mobile-nav-link-${l.label.toLowerCase().replace(/\s+/g, "-")}`}
-                  className={({ isActive }) =>
-                    `px-3 py-3 text-base rounded-md ${
+              {links.map((l) => {
+                const isActive = pathname === l.to;
+                return (
+                  <Link
+                    key={l.to}
+                    href={l.to}
+                    data-testid={`mobile-nav-link-${l.label.toLowerCase().replace(/\s+/g, "-")}`}
+                    className={`px-3 py-3 text-base rounded-md ${
                       isActive ? "text-white bg-white/5" : "text-zinc-400"
-                    }`
-                  }
-                >
-                  {l.label}
-                </NavLink>
-              ))}
+                    }`}
+                  >
+                    {l.label}
+                  </Link>
+                );
+              })}
             </div>
           </motion.div>
         )}

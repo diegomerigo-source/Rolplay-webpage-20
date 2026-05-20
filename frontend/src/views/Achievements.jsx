@@ -1,3 +1,4 @@
+"use client";
 import { motion } from "framer-motion";
 import { Award, Trophy, Sparkles, Play } from "lucide-react";
 import PageShell from "@/components/PageShell";

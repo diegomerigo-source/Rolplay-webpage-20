@@ -1,3 +1,4 @@
+"use client";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Calendar, Facebook, Linkedin, Copy, Check } from "lucide-react";
 import { useState } from "react";

@@ -1,3 +1,4 @@
+"use client";
 import { motion } from "framer-motion";
 import { MapPin, Building2, Globe, Play } from "lucide-react";
 import PageShell from "@/components/PageShell";
