@@ -1,4 +1,12 @@
 "use client";
+
+// Pre-computed deterministic particle data — avoids SSR/client Math.random() hydration mismatch
+const PARTICLES = Array.from({ length: 28 }, (_, i) => ({
+  left: ((i * 37.3 + 13.7) % 100).toFixed(4),
+  duration: 7 + (i * 1.3) % 5,
+  delay: (i * 0.71) % 5,
+}));
+
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Award, Sparkles, Play, Brain, Target, Users, Zap, ShieldCheck, Globe, BarChart3, Mail, Linkedin } from "lucide-react";
@@ -379,15 +387,15 @@ export default function Home() {
           />
           <NeuralNetwork className="opacity-30" intensity={1.2} />
           {/* Falling red particles */}
-          {[...Array(28)].map((_, i) => (
+          {PARTICLES.map((p, i) => (
             <motion.span
               key={i}
               initial={{ y: -20, opacity: 0 }}
               animate={{ y: "100vh", opacity: [0, 0.8, 0] }}
-              transition={{ duration: 7 + Math.random() * 5, repeat: Infinity, delay: Math.random() * 5, ease: "linear" }}
+              transition={{ duration: p.duration, repeat: Infinity, delay: p.delay, ease: "linear" }}
               className="absolute w-[2px] h-[2px] rounded-full"
               style={{
-                left: `${Math.random() * 100}%`,
+                left: `${p.left}%`,
                 background: "rgba(192, 57, 43, 0.9)",
                 boxShadow: "0 0 6px rgba(192,57,43,0.9)",
               }}
