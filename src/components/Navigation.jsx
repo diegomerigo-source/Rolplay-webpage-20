@@ -4,16 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Facebook, Linkedin } from "lucide-react";
-
-const links = [
-  { to: "/", label: "Home" },
-  { to: "/about", label: "About us" },
-  { to: "/benefits", label: "Benefits" },
-  { to: "/achievements", label: "Achievements" },
-  { to: "/success-stories", label: "Success Stories" },
-  { to: "/contact", label: "Contact Us" },
-  { to: "/faqs", label: "FAQs" },
-];
+import { useTranslation } from "react-i18next";
 
 const Logo = () => (
   <div className="flex items-center group" data-testid="brand-logo">
@@ -70,8 +61,20 @@ const Logo = () => (
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [lang, setLang] = useState("EN");
   const pathname = usePathname();
+  const { i18n, t } = useTranslation();
+
+  const lang = i18n.language?.startsWith('es') ? 'ES' : 'EN';
+
+  const links = [
+    { to: "/", label: t('nav.home') },
+    { to: "/about", label: t('nav.about') },
+    { to: "/benefits", label: t('nav.benefits') },
+    { to: "/achievements", label: t('nav.achievements') },
+    { to: "/success-stories", label: t('nav.successStories') },
+    { to: "/contact", label: t('nav.contact') },
+    { to: "/faqs", label: t('nav.faqs') },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -109,7 +112,7 @@ export default function Navigation() {
               <Link
                 key={l.to}
                 href={l.to}
-                data-testid={`nav-link-${l.label.toLowerCase().replace(/\s+/g, "-")}`}
+                data-testid={`nav-link-${l.to.replace(/\//g, "").replace(/-/g, "-") || "home"}`}
                 className={`relative px-3.5 py-2 text-sm font-medium tracking-wide transition-colors ${
                   isActive ? "text-white" : "text-zinc-400 hover:text-white"
                 } group`}
@@ -128,7 +131,7 @@ export default function Navigation() {
         <div className="flex items-center gap-3">
           <div className="hidden md:flex items-center glass rounded-full p-0.5 text-[11px] font-mono tracking-widest" data-testid="lang-toggle">
             <button
-              onClick={() => setLang("EN")}
+              onClick={() => i18n.changeLanguage('en')}
               data-testid="lang-en"
               className={`px-2.5 py-1 rounded-full transition-all ${
                 lang === "EN" ? "bg-[#C0392B] text-white" : "text-zinc-400"
@@ -137,7 +140,7 @@ export default function Navigation() {
               EN
             </button>
             <button
-              onClick={() => setLang("ES")}
+              onClick={() => i18n.changeLanguage('es')}
               data-testid="lang-es"
               className={`px-2.5 py-1 rounded-full transition-all ${
                 lang === "ES" ? "bg-[#C0392B] text-white" : "text-zinc-400"
@@ -185,7 +188,7 @@ export default function Navigation() {
                   <Link
                     key={l.to}
                     href={l.to}
-                    data-testid={`mobile-nav-link-${l.label.toLowerCase().replace(/\s+/g, "-")}`}
+                    data-testid={`mobile-nav-link-${l.to.replace(/\//g, "").replace(/-/g, "-") || "home"}`}
                     className={`px-3 py-3 text-base rounded-md ${
                       isActive ? "text-white bg-white/5" : "text-zinc-400"
                     }`}

@@ -5,41 +5,7 @@ import { Plus, Minus } from "lucide-react";
 import PageShell from "@/components/PageShell";
 import NeuralNetwork from "@/components/NeuralNetwork";
 import ContactForm from "@/components/ContactForm";
-
-const faqs = [
-  {
-    q: "What services does Rolplay offer?",
-    a: "AI-powered training programs designed to improve sales team performance and maximize commercial results through innovative technology.",
-  },
-  {
-    q: "Where is Rolplay located?",
-    a: "Mexico and Canada, serving local and international clients.",
-  },
-  {
-    q: "How can AI improve my sales team's performance?",
-    a: "Personalized training, analysis, and strategic insights to enhance techniques, skills, and decision-making.",
-  },
-  {
-    q: "Is the training customizable for different industries?",
-    a: "Yes, fully customizable to match specific needs.",
-  },
-  {
-    q: "How can I get started?",
-    a: "Contact through website or call Mexico City office.",
-  },
-  {
-    q: "What results can I expect?",
-    a: "Improved communication clarity, higher conversion rates, reduced errors, more confidence. Measurable improvements within a few weeks.",
-  },
-  {
-    q: "Does Rolplay require prior training?",
-    a: "No. Intuitive for any technical level. Includes guides, preconfigured scenarios, instant AI feedback.",
-  },
-  {
-    q: "Can I integrate with other tools?",
-    a: "Yes. Integrates with CRM systems, LMS platforms, and other internal tools.",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 function LightBeams() {
   return (
@@ -68,6 +34,18 @@ function LightBeams() {
 
 export default function FAQs() {
   const [open, setOpen] = useState(0);
+  const { t } = useTranslation();
+
+  const faqs = [
+    { q: t('faqs.q1'), a: t('faqs.a1') },
+    { q: t('faqs.q2'), a: t('faqs.a2') },
+    { q: t('faqs.q3'), a: t('faqs.a3') },
+    { q: t('faqs.q4'), a: t('faqs.a4') },
+    { q: t('faqs.q5'), a: t('faqs.a5') },
+    { q: t('faqs.q6'), a: t('faqs.a6') },
+    { q: t('faqs.q7'), a: t('faqs.a7') },
+    { q: t('faqs.q8'), a: t('faqs.a8') },
+  ];
 
   return (
     <PageShell testid="faqs-page">
@@ -84,14 +62,14 @@ export default function FAQs() {
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
             <div className="font-mono text-[11px] tracking-[0.3em] text-[#C0392B] uppercase mb-5 inline-flex items-center gap-3 mx-auto">
               <span className="w-10 h-px bg-[#C0392B]" />
-              KNOWLEDGE BASE
+              {t('faqs.heroOverline')}
               <span className="w-10 h-px bg-[#C0392B]" />
             </div>
             <h1 className="font-display text-[clamp(2.6rem,7.5vw,7rem)] leading-[0.92] max-w-4xl mx-auto" data-testid="faqs-headline">
-              Frequently Asked <span className="text-[#C0392B] text-glow-red">Questions.</span>
+              {t('faqs.heroTitle')}
             </h1>
             <p className="mt-6 text-zinc-400 max-w-2xl mx-auto text-base md:text-lg">
-              Resolve your questions about the sales simulator here.
+              {t('faqs.heroBody')}
             </p>
           </motion.div>
         </div>
@@ -166,12 +144,12 @@ export default function FAQs() {
             <div className="lg:col-span-5">
               <div className="font-mono text-[11px] tracking-[0.3em] text-[#C0392B] uppercase mb-5 flex items-center gap-3">
                 <span className="w-10 h-px bg-[#C0392B]" />
-                STILL CURIOUS?
+                {t('faqs.stillCuriousOverline')}
               </div>
               <h2 className="font-display text-3xl md:text-5xl leading-[1.05]">
-                Ask us <span className="text-[#C0392B]">anything.</span>
+                {t('faqs.stillCuriousHeading')}
               </h2>
-              <p className="text-zinc-400 mt-5 max-w-md">We answer every question, usually the same business day.</p>
+              <p className="text-zinc-400 mt-5 max-w-md">{t('faqs.stillCuriousBody')}</p>
             </div>
             <div className="lg:col-span-7">
               <div className="glass rounded-3xl p-8">

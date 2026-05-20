@@ -6,30 +6,35 @@ import PageShell from "@/components/PageShell";
 import NeuralNetwork from "@/components/NeuralNetwork";
 import { PrimaryCTA, GhostCTA } from "@/components/CTAButton";
 import SectionHeader from "@/components/SectionHeader";
-
-const benefits = [
-  {
-    icon: ShieldCheck,
-    title: "Reduction of Bias",
-    summary: "Fair, objective evaluations — every single time.",
-    body: "Traditional roleplays carry the weight of social dynamics and personal preferences. Our AI evaluates every rep against the same rubric, removing favoritism and ensuring training outcomes are based purely on demonstrated skill.",
-  },
-  {
-    icon: Globe,
-    title: "Multilingual Support",
-    summary: "Train teams in the languages your customers actually speak.",
-    body: "Whether your reps sell in English, Spanish, or any combination, our simulators preserve the nuance of each language — accents, idioms, and cultural context — so practice mirrors reality.",
-  },
-  {
-    icon: BarChart3,
-    title: "Real-Time Insights",
-    summary: "Skill curves, conversion drivers, and trend analytics — live.",
-    body: "Stop waiting for quarterly reviews. Sales leaders see real-time dashboards: who is improving, who is stuck on objections, and where targeted coaching will move the revenue needle fastest.",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 export default function Benefits() {
   const [open, setOpen] = useState(0);
+  const { t } = useTranslation();
+
+  const benefits = [
+    {
+      icon: ShieldCheck,
+      label: t('benefits.pillar1Label'),
+      title: t('benefits.pillar1Title'),
+      summary: t('benefits.pillar1Summary'),
+      body: t('benefits.pillar1Body'),
+    },
+    {
+      icon: Globe,
+      label: t('benefits.pillar2Label'),
+      title: t('benefits.pillar2Title'),
+      summary: t('benefits.pillar2Summary'),
+      body: t('benefits.pillar2Body'),
+    },
+    {
+      icon: BarChart3,
+      label: t('benefits.pillar3Label'),
+      title: t('benefits.pillar3Title'),
+      summary: t('benefits.pillar3Summary'),
+      body: t('benefits.pillar3Body'),
+    },
+  ];
 
   return (
     <PageShell testid="benefits-page">
@@ -49,18 +54,17 @@ export default function Benefits() {
             className="lg:col-span-7">
             <div className="font-mono text-[11px] tracking-[0.3em] text-[#C0392B] uppercase mb-5 flex items-center gap-3">
               <span className="w-10 h-px bg-[#C0392B]" />
-              WHY ROLPLAY · BENEFITS
+              {t('benefits.heroOverline')}
             </div>
             <h1 className="font-display text-[clamp(2.6rem,7vw,6.5rem)] leading-[0.95]" data-testid="benefits-headline">
-              Built for the moments<br />
-              that <span className="text-[#C0392B] text-glow-red">close deals.</span>
+              {t('benefits.heroTitle')}
             </h1>
             <p className="mt-8 text-zinc-300 text-base md:text-lg max-w-2xl leading-relaxed">
-              Training a sales force with artificial intelligence simulators provides immediate and objective feedback, personalizes training scenarios, and allows unlimited practice.
+              {t('benefits.heroBody')}
             </p>
             <div className="mt-8">
               <PrimaryCTA href="https://rolplayadmin.com/rolplayca-demo/access.php?lang=en_US" external testid="benefits-demo-cta">
-                Request Demo
+                {t('benefits.heroCta')}
               </PrimaryCTA>
             </div>
           </motion.div>
@@ -74,15 +78,15 @@ export default function Benefits() {
             <div className="relative aspect-square max-w-md mx-auto">
               <div className="absolute inset-0 rounded-3xl glass-strong p-8 flex flex-col justify-between">
                 <div>
-                  <div className="font-mono text-[10px] tracking-[0.25em] text-[#C0392B] uppercase">// CORE PRINCIPLE</div>
+                  <div className="font-mono text-[10px] tracking-[0.25em] text-[#C0392B] uppercase">{t('benefits.coreLabel')}</div>
                   <p className="font-display text-2xl md:text-3xl mt-4 leading-tight">
-                    Fail a thousand times <span className="text-[#C0392B]">in private</span>.
+                    {t('benefits.coreHeading')}
                   </p>
                 </div>
                 <div className="space-y-2 font-mono text-[11px] text-zinc-500 tracking-widest">
-                  <div className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-[#C0392B]" /> NO JUDGEMENT</div>
-                  <div className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-[#C0392B]" /> 100% OBJECTIVE</div>
-                  <div className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-[#C0392B]" /> UNLIMITED REPS</div>
+                  <div className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-[#C0392B]" /> {t('benefits.coreB1')}</div>
+                  <div className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-[#C0392B]" /> {t('benefits.coreB2')}</div>
+                  <div className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-[#C0392B]" /> {t('benefits.coreB3')}</div>
                 </div>
               </div>
               <div className="absolute -inset-4 rounded-3xl border border-[#C0392B]/20" style={{ animation: "pulse-red 4s ease-in-out infinite" }} />
@@ -95,8 +99,7 @@ export default function Benefits() {
       <section className="relative py-24 border-y border-white/5" data-testid="benefits-key-message">
         <div className="max-w-[1100px] mx-auto px-6 lg:px-10 text-center">
           <p className="font-display text-2xl md:text-4xl leading-tight">
-            We eliminate the awkwardness and judgment of traditional roleplays between colleagues.
-            We offer a <span className="text-[#C0392B]">safe and 100% objective</span> environment where your team can fail a thousand times with our AI, ensuring they are <span className="text-[#C0392B]">flawless</span> when the moment of truth arrives in front of the client.
+            {t('benefits.keyMessage')}
           </p>
         </div>
       </section>
@@ -105,8 +108,8 @@ export default function Benefits() {
       <section className="relative py-32" data-testid="benefits-accordion-section">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-10">
           <SectionHeader
-            overline="// THREE PILLARS"
-            title="What you actually get."
+            overline={t('benefits.pillarsOverline')}
+            title={t('benefits.pillarsTitle')}
             redWord="actually get."
           />
           <div className="mt-14 space-y-3">
@@ -115,7 +118,7 @@ export default function Benefits() {
               const isOpen = open === i;
               return (
                 <motion.div
-                  key={b.title}
+                  key={i}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -134,7 +137,7 @@ export default function Benefits() {
                       <Icon size={20} />
                     </div>
                     <div className="flex-1">
-                      <div className="font-mono text-[10px] tracking-[0.25em] text-zinc-500 uppercase">PILLAR 0{i + 1}</div>
+                      <div className="font-mono text-[10px] tracking-[0.25em] text-zinc-500 uppercase">{b.label}</div>
                       <h3 className="font-display text-2xl md:text-3xl mt-1 leading-tight">{b.title}</h3>
                       <p className="text-zinc-400 text-sm mt-1">{b.summary}</p>
                     </div>
@@ -205,14 +208,13 @@ export default function Benefits() {
             transition={{ duration: 0.9 }}
             className="font-display text-[clamp(2.5rem,7vw,7rem)] leading-[0.95]"
           >
-            Practice the hard parts in private<br />
-            so you <span className="text-[#C0392B] text-glow-red">don't fail in public.</span>
+            {t('benefits.boldStatement')}
           </motion.h2>
           <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
             <PrimaryCTA href="https://calendly.com/viridiana-flores-audioweb/30min" external testid="benefits-bold-cta">
-              Book a Discovery Call
+              {t('benefits.boldCta1')}
             </PrimaryCTA>
-            <GhostCTA href="/success-stories" testid="benefits-stories-cta">See Results</GhostCTA>
+            <GhostCTA href="/success-stories" testid="benefits-stories-cta">{t('benefits.boldCta2')}</GhostCTA>
           </div>
         </div>
       </section>

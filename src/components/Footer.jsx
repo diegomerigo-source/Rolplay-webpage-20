@@ -2,14 +2,17 @@
 import Link from "next/link";
 import { Facebook, Linkedin, Mail, Phone, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
-
-const locations = [
-  { city: "Toronto", country: "Canadá" },
-  { city: "Monterrey", country: "México" },
-  { city: "Ciudad de México", country: "México" },
-];
+import { useTranslation } from "react-i18next";
 
 export default function Footer() {
+  const { t } = useTranslation();
+
+  const locations = [
+    { city: t('about.toronto'), country: t('about.canada') },
+    { city: t('about.monterrey'), country: t('about.mexico') },
+    { city: t('about.cdmx'), country: t('about.mexico') },
+  ];
+
   return (
     <footer className="relative noise-overlay border-t border-white/5 bg-[#050508] overflow-hidden" data-testid="site-footer">
       <div
@@ -23,7 +26,7 @@ export default function Footer() {
               <span className="text-[#C0392B]">Rol</span>Play
             </div>
             <p className="text-zinc-400 max-w-md leading-relaxed">
-              Train your sales force with simulators and artificial intelligence. Trusted by Fortune-ranked companies for over 20 years.
+              {t('footer.tagline')}
             </p>
             <div className="flex items-center gap-3 mt-6">
               <a href="https://www.facebook.com/profile.php?id=61582917112897" target="_blank" rel="noopener noreferrer"
@@ -40,7 +43,7 @@ export default function Footer() {
           </div>
 
           <div className="md:col-span-3">
-            <div className="font-mono text-[11px] tracking-[0.2em] text-[#C0392B] uppercase mb-5">Locations</div>
+            <div className="font-mono text-[11px] tracking-[0.2em] text-[#C0392B] uppercase mb-5">{t('footer.locations')}</div>
             <ul className="space-y-3">
               {locations.map((l) => (
                 <motion.li
@@ -60,7 +63,7 @@ export default function Footer() {
           </div>
 
           <div className="md:col-span-4">
-            <div className="font-mono text-[11px] tracking-[0.2em] text-[#C0392B] uppercase mb-5">Contact</div>
+            <div className="font-mono text-[11px] tracking-[0.2em] text-[#C0392B] uppercase mb-5">{t('footer.contact')}</div>
             <div className="space-y-3">
               <a href="mailto:info@rolplay.ai" className="flex items-center gap-3 text-sm text-zinc-300 hover:text-white group" data-testid="footer-email">
                 <Mail size={14} className="text-[#C0392B]" />
@@ -73,20 +76,20 @@ export default function Footer() {
             </div>
 
             <div className="mt-6 flex flex-wrap gap-2 text-xs">
-              <Link href="/" className="text-zinc-500 hover:text-white">Home</Link>
+              <Link href="/" className="text-zinc-500 hover:text-white">{t('footer.links.home')}</Link>
               <span className="text-zinc-700">/</span>
-              <Link href="/about" className="text-zinc-500 hover:text-white">About</Link>
+              <Link href="/about" className="text-zinc-500 hover:text-white">{t('footer.links.about')}</Link>
               <span className="text-zinc-700">/</span>
-              <Link href="/benefits" className="text-zinc-500 hover:text-white">Benefits</Link>
+              <Link href="/benefits" className="text-zinc-500 hover:text-white">{t('footer.links.benefits')}</Link>
               <span className="text-zinc-700">/</span>
-              <Link href="/contact" className="text-zinc-500 hover:text-white">Contact</Link>
+              <Link href="/contact" className="text-zinc-500 hover:text-white">{t('footer.links.contact')}</Link>
             </div>
           </div>
         </div>
 
         <div className="pt-6 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-3">
-          <p className="text-xs text-zinc-600 font-mono tracking-widest">© 2025. ALL RIGHTS RESERVED.</p>
-          <p className="text-xs text-zinc-600 font-mono tracking-widest">TRAINING INDUSTRY · TOP 20 · 2025</p>
+          <p className="text-xs text-zinc-600 font-mono tracking-widest">{t('footer.copyright')}</p>
+          <p className="text-xs text-zinc-600 font-mono tracking-widest">{t('footer.badge')}</p>
         </div>
       </div>
     </footer>

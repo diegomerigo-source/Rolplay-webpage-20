@@ -8,12 +8,7 @@ import GlassCard from "@/components/GlassCard";
 import ContactForm from "@/components/ContactForm";
 import { PrimaryCTA, GhostCTA } from "@/components/CTAButton";
 import { toast } from "sonner";
-
-const offices = [
-  { city: "Toronto", country: "Canadá", coords: "43.65°N / 79.38°W" },
-  { city: "Monterrey", country: "México", coords: "25.67°N / 100.31°W" },
-  { city: "Ciudad de México", country: "México", coords: "19.43°N / 99.13°W" },
-];
+import { useTranslation } from "react-i18next";
 
 function CopyField({ value, label, testid }) {
   const [copied, setCopied] = useState(false);
@@ -34,7 +29,7 @@ function CopyField({ value, label, testid }) {
       data-testid={testid}
     >
       <div className="w-12 h-12 rounded-xl bg-[#C0392B]/10 grid place-items-center text-[#C0392B] group-hover:bg-[#C0392B] group-hover:text-white transition-all">
-        {label === "Email" ? <Mail size={18} /> : <Phone size={18} />}
+        {label.toLowerCase().includes("mail") || label.toLowerCase().includes("correo") ? <Mail size={18} /> : <Phone size={18} />}
       </div>
       <div className="flex-1 min-w-0">
         <div className="font-mono text-[10px] tracking-[0.25em] text-zinc-500 uppercase">{label}</div>
@@ -48,6 +43,14 @@ function CopyField({ value, label, testid }) {
 }
 
 export default function Contact() {
+  const { t } = useTranslation();
+
+  const offices = [
+    { city: t('contact.toronto'), country: t('contact.canada'), coords: "43.65°N / 79.38°W" },
+    { city: t('contact.monterrey'), country: t('contact.mexico'), coords: "25.67°N / 100.31°W" },
+    { city: t('contact.cdmx'), country: t('contact.mexico'), coords: "19.43°N / 99.13°W" },
+  ];
+
   return (
     <PageShell testid="contact-page">
       {/* HERO */}
@@ -62,20 +65,20 @@ export default function Contact() {
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
             <div className="font-mono text-[11px] tracking-[0.3em] text-[#C0392B] uppercase mb-5 flex items-center gap-3">
               <span className="w-10 h-px bg-[#C0392B]" />
-              GET IN TOUCH
+              {t('contact.heroOverline')}
             </div>
             <h1 className="font-display text-[clamp(2.8rem,8vw,8rem)] leading-[0.9]" data-testid="contact-headline">
-              <span className="text-[#C0392B] text-glow-red">Contact</span> Us
+              {t('contact.heroTitle')}
             </h1>
             <p className="mt-8 text-zinc-300 text-lg md:text-xl max-w-2xl leading-relaxed">
-              We're here to support you! Whether you're scoping a pilot or scaling a global rollout, our team responds within one business day.
+              {t('contact.heroBody')}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <PrimaryCTA href="https://calendly.com/viridiana-flores-audioweb/30min" external testid="contact-calendly-cta">
-                <Calendar size={14} /> Book a Call
+                <Calendar size={14} /> {t('contact.bookCall')}
               </PrimaryCTA>
               <GhostCTA href="https://wa.me/15797986707?text=Como%20funciona%20Rolplay?" external testid="contact-whatsapp-cta">
-                Chat on WhatsApp
+                {t('contact.chatWhatsapp')}
               </GhostCTA>
             </div>
           </motion.div>
@@ -86,11 +89,11 @@ export default function Contact() {
       <section className="relative py-24 border-t border-white/5" data-testid="contact-main-section">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10 grid grid-cols-1 lg:grid-cols-12 gap-10">
           <div className="lg:col-span-5 space-y-4">
-            <div className="font-mono text-[10px] tracking-[0.25em] text-[#C0392B] uppercase mb-2">// DIRECT LINES</div>
-            <CopyField label="Email" value="info@rolplay.ai" testid="contact-email-copy" />
-            <CopyField label="Phone" value="+52 (55) 5093 7376" testid="contact-phone-copy" />
+            <div className="font-mono text-[10px] tracking-[0.25em] text-[#C0392B] uppercase mb-2">{t('contact.directLinesLabel')}</div>
+            <CopyField label={t('contact.emailLabel')} value="info@rolplay.ai" testid="contact-email-copy" />
+            <CopyField label={t('contact.phoneLabel')} value="+52 (55) 5093 7376" testid="contact-phone-copy" />
 
-            <div className="font-mono text-[10px] tracking-[0.25em] text-[#C0392B] uppercase mt-8 mb-3">// SOCIAL</div>
+            <div className="font-mono text-[10px] tracking-[0.25em] text-[#C0392B] uppercase mt-8 mb-3">{t('contact.socialLabel')}</div>
             <div className="flex items-center gap-3">
               <a href="https://www.facebook.com/profile.php?id=61582917112897" target="_blank" rel="noopener noreferrer"
                 className="w-12 h-12 rounded-xl glass grid place-items-center hover:border-[#C0392B]/40 hover:text-[#C0392B] transition-all" data-testid="contact-facebook">
@@ -105,8 +108,8 @@ export default function Contact() {
 
           <div className="lg:col-span-7">
             <GlassCard tilt={false} className="p-8 md:p-10">
-              <div className="font-mono text-[10px] tracking-[0.25em] text-[#C0392B] uppercase mb-2">// SEND US A MESSAGE</div>
-              <h3 className="font-display text-3xl md:text-4xl mb-6">Tell us about your team.</h3>
+              <div className="font-mono text-[10px] tracking-[0.25em] text-[#C0392B] uppercase mb-2">{t('contact.sendMessageLabel')}</div>
+              <h3 className="font-display text-3xl md:text-4xl mb-6">{t('contact.sendMessageHeading')}</h3>
               <ContactForm variant="full" />
             </GlassCard>
           </div>
@@ -119,10 +122,10 @@ export default function Contact() {
         <div className="relative max-w-[1400px] mx-auto px-6 lg:px-10">
           <div className="font-mono text-[11px] tracking-[0.3em] text-[#C0392B] uppercase mb-5 flex items-center gap-3">
             <span className="w-10 h-px bg-[#C0392B]" />
-            OFFICES
+            {t('contact.officesOverline')}
           </div>
           <h2 className="font-display text-3xl md:text-5xl leading-[1.05] max-w-3xl">
-            Three cities. <span className="text-[#C0392B]">One team.</span>
+            {t('contact.officesHeading')}
           </h2>
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
             {offices.map((o, i) => (

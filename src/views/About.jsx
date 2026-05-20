@@ -6,14 +6,15 @@ import NeuralNetwork from "@/components/NeuralNetwork";
 import GlassCard from "@/components/GlassCard";
 import SectionHeader from "@/components/SectionHeader";
 import { PrimaryCTA } from "@/components/CTAButton";
+import { useTranslation } from "react-i18next";
 
-const locations = [
-  { city: "Toronto", country: "Canada", lat: 43.65, lng: -79.38, x: 38, y: 28 },
-  { city: "Monterrey", country: "Mexico", lat: 25.67, lng: -100.31, x: 30, y: 48 },
-  { city: "Ciudad de México", country: "Mexico", lat: 19.43, lng: -99.13, x: 32, y: 56 },
+const locationCoords = [
+  { lat: 43.65, lng: -79.38, x: 38, y: 28 },
+  { lat: 25.67, lng: -100.31, x: 30, y: 48 },
+  { lat: 19.43, lng: -99.13, x: 32, y: 56 },
 ];
 
-function GlobeViz() {
+function GlobeViz({ locations }) {
   // SVG globe with meridians, parallels, glowing pins
   return (
     <div className="relative aspect-square w-full max-w-[460px] mx-auto" data-testid="about-globe">
@@ -114,6 +115,14 @@ function GlobeViz() {
 }
 
 export default function About() {
+  const { t } = useTranslation();
+
+  const locations = [
+    { city: t('about.toronto'), country: t('about.canada'), ...locationCoords[0] },
+    { city: t('about.monterrey'), country: t('about.mexico'), ...locationCoords[1] },
+    { city: t('about.cdmx'), country: t('about.mexico'), ...locationCoords[2] },
+  ];
+
   return (
     <PageShell testid="about-page">
       {/* HERO */}
@@ -128,13 +137,13 @@ export default function About() {
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
             <div className="font-mono text-[11px] tracking-[0.3em] text-[#C0392B] uppercase mb-5 flex items-center gap-3">
               <span className="w-10 h-px bg-[#C0392B]" />
-              WHO WE ARE · EST. 2002
+              {t('about.heroOverline')}
             </div>
             <h1 className="font-display text-[clamp(3rem,8.5vw,8rem)] leading-[0.9] tracking-tighter" data-testid="about-headline">
-              About <span className="text-[#C0392B] text-glow-red">Us</span>
+              {t('about.heroTitle')}
             </h1>
             <p className="mt-8 text-zinc-300 text-lg md:text-xl max-w-3xl leading-relaxed">
-              RolPlay is a technology firm with more than <span className="text-[#C0392B] font-semibold">20 years of experience</span> developing virtual platforms for training, coaching, and communication. Founded in Mexico in 2002, it has grown by expanding its services and client base.
+              {t('about.heroBody')}
             </p>
           </motion.div>
         </div>
@@ -151,12 +160,12 @@ export default function About() {
           >
             <GlassCard className="p-10 h-full">
               <Globe size={28} className="text-[#C0392B] mb-6" />
-              <div className="font-mono text-[10px] tracking-[0.25em] text-zinc-500 uppercase mb-3">// EXPANSION</div>
+              <div className="font-mono text-[10px] tracking-[0.25em] text-zinc-500 uppercase mb-3">{t('about.card1Label')}</div>
               <h3 className="font-display text-3xl md:text-4xl leading-tight mb-4">
-                From Mexico to <span className="text-[#C0392B]">Toronto</span>.
+                {t('about.card1Heading')}
               </h3>
               <p className="text-zinc-400 leading-relaxed">
-                What began in 2002 as a Mexican innovation has grown into a North-American operation, with expansion into Toronto, Canada, serving teams across the continent.
+                {t('about.card1Body')}
               </p>
             </GlassCard>
           </motion.div>
@@ -168,12 +177,12 @@ export default function About() {
           >
             <GlassCard className="p-10 h-full">
               <Building2 size={28} className="text-[#C0392B] mb-6" />
-              <div className="font-mono text-[10px] tracking-[0.25em] text-zinc-500 uppercase mb-3">// CLIENTS</div>
+              <div className="font-mono text-[10px] tracking-[0.25em] text-zinc-500 uppercase mb-3">{t('about.card2Label')}</div>
               <h3 className="font-display text-3xl md:text-4xl leading-tight mb-4">
-                Trusted by <span className="text-[#C0392B]">world-class</span> corporates.
+                {t('about.card2Heading')}
               </h3>
               <p className="text-zinc-400 leading-relaxed">
-                Our solutions support some of the largest companies on the planet — across pharmaceuticals, energy, retail and finance — with measurable training outcomes.
+                {t('about.card2Body')}
               </p>
             </GlassCard>
           </motion.div>
@@ -186,13 +195,13 @@ export default function About() {
         <div className="relative max-w-[1400px] mx-auto px-6 lg:px-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-6">
             <SectionHeader
-              overline="OUR REASON FOR BEING"
-              title="Our Mission"
+              overline={t('about.missionOverline')}
+              title={t('about.missionTitle')}
               redWord="Mission"
-              body="Boost your sales potential through intelligent training, building teams that inspire trust and achieve meaningful closes."
+              body={t('about.missionBody')}
             />
             <div className="mt-8">
-              <PrimaryCTA href="/contact" testid="about-mission-cta">Talk to Sales</PrimaryCTA>
+              <PrimaryCTA href="/contact" testid="about-mission-cta">{t('about.missionCta')}</PrimaryCTA>
             </div>
           </div>
           <div className="lg:col-span-6">
@@ -203,8 +212,8 @@ export default function About() {
                 <motion.div whileHover={{ scale: 1.1 }} className="w-20 h-20 rounded-full bg-[#C0392B] grid place-items-center shadow-[0_0_40px_rgba(192,57,43,0.6)]">
                   <Play size={26} fill="white" className="ml-1" />
                 </motion.div>
-                <div className="font-display text-2xl md:text-3xl mt-5">Nuestra <span className="text-[#C0392B]">Misión</span></div>
-                <div className="font-mono text-[10px] tracking-[0.25em] text-zinc-500 uppercase mt-2">VIDEO · 1:42</div>
+                <div className="font-display text-2xl md:text-3xl mt-5">{t('about.missionVideoTitle')}</div>
+                <div className="font-mono text-[10px] tracking-[0.25em] text-zinc-500 uppercase mt-2">{t('about.missionVideoMeta')}</div>
               </div>
             </GlassCard>
           </div>
@@ -220,10 +229,10 @@ export default function About() {
         <div className="relative max-w-[1400px] mx-auto px-6 lg:px-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div>
             <SectionHeader
-              overline="OUR FOOTPRINT"
-              title="Three offices. One vision."
+              overline={t('about.globeOverline')}
+              title={t('about.globeTitle')}
               redWord="One vision."
-              body="From Toronto to Mexico City, our teams partner with leading companies to redefine how sales is taught, practiced and measured."
+              body={t('about.globeBody')}
             />
             <div className="mt-8 space-y-3">
               {locations.map((l) => (
@@ -240,7 +249,7 @@ export default function About() {
               ))}
             </div>
           </div>
-          <GlobeViz />
+          <GlobeViz locations={locations} />
         </div>
       </section>
     </PageShell>

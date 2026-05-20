@@ -17,39 +17,10 @@ import GlassCard from "@/components/GlassCard";
 import { PrimaryCTA, GhostCTA } from "@/components/CTAButton";
 import SectionHeader from "@/components/SectionHeader";
 import ContactForm from "@/components/ContactForm";
+import { useTranslation } from "react-i18next";
 
-const headlineWords = ["Train", "your", "Sales", "Force", "with", "Simulators", "and", "Artificial", "Intelligence!"];
-
-const products = [
-  {
-    name: "Rolplay",
-    tag: "FLAGSHIP",
-    desc: "Real feedback. Fast, practical sessions where reps record, refine and master their pitch.",
-    bullets: ["REAL FEEDBACK", "FAST · PRACTICAL", "RECORD & REFINE"],
-    icon: Brain,
-  },
-  {
-    name: "Sales Simulator",
-    tag: "TRAINING",
-    desc: "Practice real-world scenarios. Handle objections in a safe, AI-driven environment, again and again.",
-    bullets: ["REAL SCENARIOS", "OBJECTION HANDLING", "UNLIMITED REPS"],
-    icon: Target,
-  },
-  {
-    name: "Virtual Coach",
-    tag: "ONE-ON-ONE",
-    desc: "Your AI sales coach, on-demand. Personalised guidance built around each rep's strengths and gaps.",
-    bullets: ["1-ON-1 COACHING", "PERSONALIZED PLANS", "INSTANT INSIGHTS"],
-    icon: Users,
-  },
-];
-
-const features = [
-  { icon: Zap, title: "Immediate & objective feedback", body: "Eliminate gut-feel critiques. Replace them with measurable, replayable signal." },
-  { icon: ShieldCheck, title: "Fair, unbiased evaluations", body: "Every rep is graded against the same rubric. No favourites, no awkwardness." },
-  { icon: Globe, title: "Multilingual scenarios", body: "Train teams in EN, ES, and the languages your customers actually speak." },
-  { icon: BarChart3, title: "Progress you can track", body: "Skill curves and trend analytics across your entire commercial org." },
-];
+const productIcons = [Brain, Target, Users];
+const featureIcons = [Zap, ShieldCheck, Globe, BarChart3];
 
 function TypewriterQuote({ text, start }) {
   const [out, setOut] = useState("");
@@ -68,6 +39,43 @@ function TypewriterQuote({ text, start }) {
 
 export default function Home() {
   const [quoteStart, setQuoteStart] = useState(false);
+  const { t } = useTranslation();
+
+  const headlineWords = t('home.heroWords', { returnObjects: true });
+
+  const products = [
+    {
+      name: t('home.product1Name'),
+      tag: t('home.product1Tag'),
+      desc: t('home.product1Desc'),
+      bullets: [t('home.product1B1'), t('home.product1B2'), t('home.product1B3')],
+      label: t('home.product1Label'),
+      icon: Brain,
+    },
+    {
+      name: t('home.product2Name'),
+      tag: t('home.product2Tag'),
+      desc: t('home.product2Desc'),
+      bullets: [t('home.product2B1'), t('home.product2B2'), t('home.product2B3')],
+      label: t('home.product2Label'),
+      icon: Target,
+    },
+    {
+      name: t('home.product3Name'),
+      tag: t('home.product3Tag'),
+      desc: t('home.product3Desc'),
+      bullets: [t('home.product3B1'), t('home.product3B2'), t('home.product3B3')],
+      label: t('home.product3Label'),
+      icon: Users,
+    },
+  ];
+
+  const features = [
+    { icon: Zap, title: t('home.feature1Title'), body: t('home.feature1Body') },
+    { icon: ShieldCheck, title: t('home.feature2Title'), body: t('home.feature2Body') },
+    { icon: Globe, title: t('home.feature3Title'), body: t('home.feature3Body') },
+    { icon: BarChart3, title: t('home.feature4Title'), body: t('home.feature4Body') },
+  ];
 
   return (
     <PageShell testid="home-page">
@@ -93,13 +101,13 @@ export default function Home() {
             data-testid="hero-overline"
           >
             <span className="w-10 h-px bg-[#C0392B]" />
-            AI-POWERED SALES TRAINING · EST. 2002
+            {t('home.heroOverline')}
           </motion.div>
 
           <div className="flex-1 flex flex-col justify-center">
           <h1 className="font-display text-[clamp(2.2rem,6.5vw,6.5rem)] leading-[0.92] tracking-tighter max-w-6xl" data-testid="hero-headline">
-            {headlineWords.map((w, i) => {
-              const isRed = w === "Sales" || w === "Force";
+            {Array.isArray(headlineWords) && headlineWords.map((w, i) => {
+              const isRed = w === "Sales" || w === "Force" || w === "Fuerza" || w === "Ventas";
               return (
                 <motion.span
                   key={i}
@@ -120,7 +128,7 @@ export default function Home() {
             transition={{ delay: 1.1, duration: 0.7 }}
             className="mt-8 max-w-xl text-zinc-400 text-base md:text-lg leading-relaxed"
           >
-            Empower your commercial team with AI simulators and a virtual coach that delivers immediate, objective and unbiased feedback — at scale.
+            {t('home.heroSubheading')}
           </motion.p>
 
           <motion.div
@@ -130,10 +138,10 @@ export default function Home() {
             className="mt-10 flex flex-wrap items-center gap-3"
           >
             <PrimaryCTA href="https://calendly.com/viridiana-flores-audioweb/30min" external testid="hero-contact-cta">
-              Contact Us
+              {t('home.heroCta')}
             </PrimaryCTA>
             <GhostCTA href="https://rolplayadmin.com/rolplayca-demo/access.php?lang=en_US" external testid="hero-demo-cta">
-              Demo
+              {t('home.heroDemo')}
             </GhostCTA>
           </motion.div>
           </div>
@@ -148,12 +156,12 @@ export default function Home() {
             <div className="flex flex-wrap items-end gap-10">
               <div data-testid="hero-stat-clients">
                 <AnimatedCounter value={91} suffix="+" className="font-display text-5xl md:text-6xl text-white" />
-                <div className="font-mono text-[10px] tracking-[0.25em] text-zinc-500 uppercase mt-1">Corporate clients</div>
+                <div className="font-mono text-[10px] tracking-[0.25em] text-zinc-500 uppercase mt-1">{t('home.statClients')}</div>
               </div>
               <div className="w-px h-12 bg-white/10 hidden md:block" />
               <div data-testid="hero-stat-users">
                 <AnimatedCounter value={8750} suffix="+" className="font-display text-5xl md:text-6xl text-white" />
-                <div className="font-mono text-[10px] tracking-[0.25em] text-zinc-500 uppercase mt-1">Active users</div>
+                <div className="font-mono text-[10px] tracking-[0.25em] text-zinc-500 uppercase mt-1">{t('home.statUsers')}</div>
               </div>
             </div>
             <div className="glass rounded-full pl-2 pr-5 py-2 flex items-center gap-3 group hover:border-[#C0392B]/40 transition-all" data-testid="hero-award-badge">
@@ -161,8 +169,8 @@ export default function Home() {
                 <Award size={16} />
               </span>
               <div>
-                <div className="font-mono text-[9px] tracking-[0.25em] text-zinc-500 uppercase leading-tight">Training Industry</div>
-                <div className="text-white text-sm font-semibold leading-tight">Top 20 · 2025</div>
+                <div className="font-mono text-[9px] tracking-[0.25em] text-zinc-500 uppercase leading-tight">{t('home.statBadge')}</div>
+                <div className="text-white text-sm font-semibold leading-tight">{t('home.statBadgeLabel')}</div>
               </div>
             </div>
           </motion.div>
@@ -179,14 +187,14 @@ export default function Home() {
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-6">
             <SectionHeader
-              overline="MEET THE PLATFORM"
-              title="Meet RolPlay"
+              overline={t('home.meetOverline')}
+              title={t('home.meetTitle')}
               redWord="Rol"
-              body="With a firm commitment to innovation and excellence, we provide tools and insights that empower teams to thrive in a dynamic market environment, ensuring our clients achieve unparalleled success."
+              body={t('home.meetBody')}
             />
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              <PrimaryCTA href="/about" testid="meet-about-cta">About Us</PrimaryCTA>
-              <div className="font-mono text-[10px] tracking-[0.25em] text-zinc-500 uppercase">EST. 2002 · MEXICO · CANADA</div>
+              <PrimaryCTA href="/about" testid="meet-about-cta">{t('home.meetCta')}</PrimaryCTA>
+              <div className="font-mono text-[10px] tracking-[0.25em] text-zinc-500 uppercase">{t('home.meetMeta')}</div>
             </div>
           </div>
 
@@ -201,8 +209,8 @@ export default function Home() {
                 >
                   <Play size={26} fill="white" className="ml-1" />
                 </motion.div>
-                <div className="font-display text-2xl md:text-3xl mt-5">Meet <span className="text-[#C0392B]">Rol</span>play</div>
-                <div className="font-mono text-[10px] tracking-[0.25em] text-zinc-500 uppercase mt-2">VIDEO · 2:14</div>
+                <div className="font-display text-2xl md:text-3xl mt-5">{t('home.meetVideoCard')}</div>
+                <div className="font-mono text-[10px] tracking-[0.25em] text-zinc-500 uppercase mt-2">{t('home.meetVideoMeta')}</div>
               </div>
             </GlassCard>
             <motion.div
@@ -213,8 +221,8 @@ export default function Home() {
             >
               <Sparkles size={18} className="text-[#C0392B]" />
               <div>
-                <div className="text-xs font-medium text-white">Top 20 AI-Based Coaching</div>
-                <div className="text-[10px] text-zinc-500 font-mono tracking-widest">2025 RECOGNITION</div>
+                <div className="text-xs font-medium text-white">{t('home.meetAchievement')}</div>
+                <div className="text-[10px] text-zinc-500 font-mono tracking-widest">{t('home.meetAchievementLabel')}</div>
               </div>
             </motion.div>
           </div>
@@ -225,9 +233,9 @@ export default function Home() {
       <section className="relative py-24 border-y border-white/5 overflow-hidden" data-testid="technology-section">
         <NeuralNetwork className="opacity-30" density={0.00007} />
         <div className="relative max-w-[1400px] mx-auto px-6 lg:px-10 text-center">
-          <div className="font-mono text-[11px] tracking-[0.3em] text-[#C0392B] uppercase mb-4">// TECHNOLOGY</div>
+          <div className="font-mono text-[11px] tracking-[0.3em] text-[#C0392B] uppercase mb-4">{t('home.techOverline')}</div>
           <h2 className="font-display text-3xl md:text-5xl lg:text-6xl leading-[1.05] max-w-5xl mx-auto">
-            Technology solutions to empower your <span className="text-[#C0392B] text-glow-red">sales team</span> with AI.
+            {t('home.techHeading')}
           </h2>
         </div>
       </section>
@@ -236,22 +244,22 @@ export default function Home() {
       <section className="relative py-32" data-testid="products-section">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
           <SectionHeader
-            overline="OUR PRODUCTS"
-            title="Three tools, one mission"
+            overline={t('home.productsOverline')}
+            title={t('home.productsTitle')}
             redWord="one mission"
-            body="Each module solves a specific link in the chain — from objection handling to coaching feedback. They work even better together."
+            body={t('home.productsBody')}
           />
           <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
             {products.map((p, i) => {
               const Icon = p.icon;
               return (
                 <motion.div
-                  key={p.name}
+                  key={i}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-80px" }}
                   transition={{ duration: 0.7, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
-                  data-testid={`product-card-${p.name.toLowerCase().replace(/\s+/g, "-")}`}
+                  data-testid={`product-card-${i}`}
                 >
                   <GlassCard className="p-6 group cursor-pointer h-full">
                     <div className="aspect-[4/3] rounded-xl relative overflow-hidden mb-6 grid-overlay border border-white/5">
@@ -277,7 +285,7 @@ export default function Home() {
                         ))}
                       </div>
                     </div>
-                    <div className="font-mono text-[10px] tracking-[0.25em] text-zinc-500 uppercase">PRODUCT 0{i + 1}</div>
+                    <div className="font-mono text-[10px] tracking-[0.25em] text-zinc-500 uppercase">{p.label}</div>
                     <h3 className="font-display text-3xl md:text-4xl mt-1 leading-none">
                       <span className="relative">
                         {p.name}
@@ -302,14 +310,14 @@ export default function Home() {
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10 grid grid-cols-1 lg:grid-cols-12 gap-14 items-center">
           <div className="lg:col-span-6">
             <SectionHeader
-              overline="WHY AI"
-              title="Why train with AI simulators?"
+              overline={t('home.whyOverline')}
+              title={t('home.whyTitle')}
               redWord="AI simulators?"
-              body="Training sales force with artificial intelligence simulators provides immediate and objective feedback, customizes training scenarios, and allows unlimited practice. It also ensures fair evaluations, makes progress tracking easier, and prepares sales representatives for real-world situations, enhancing their confidence and effectiveness."
+              body={t('home.whyBody')}
             />
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <PrimaryCTA href="https://calendly.com/viridiana-flores-audioweb/30min" external testid="why-contact-cta">
-                Contact Us
+                {t('home.whyCta')}
               </PrimaryCTA>
               <div className="flex items-center gap-2 text-zinc-500">
                 <a href="https://www.linkedin.com/company/rolplaymx/posts/?feedView=all" target="_blank" rel="noopener noreferrer"
@@ -328,7 +336,7 @@ export default function Home() {
               const Icon = f.icon;
               return (
                 <motion.div
-                  key={f.title}
+                  key={i}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -357,12 +365,12 @@ export default function Home() {
               </div>
             </div>
             <div className="flex-1 max-w-xl">
-              <div className="font-mono text-[10px] tracking-[0.25em] text-zinc-500 uppercase mb-3">// THE EDGE</div>
+              <div className="font-mono text-[10px] tracking-[0.25em] text-zinc-500 uppercase mb-3">{t('home.edgeLabel')}</div>
               <h3 className="font-display text-3xl md:text-4xl leading-tight">
-                Objective & <span className="text-[#C0392B]">unbiased</span> feedback — at every interaction.
+                {t('home.edgeHeading')}
               </h3>
               <p className="text-zinc-400 mt-4 text-sm md:text-base">
-                Even a 5% lift in messaging accuracy compounds into millions in pipeline. That is what AI-powered training unlocks.
+                {t('home.edgeBody')}
               </p>
             </div>
           </GlassCard>
@@ -417,13 +425,13 @@ export default function Home() {
           </motion.div>
           <blockquote className="font-display text-2xl md:text-4xl lg:text-5xl leading-tight max-w-4xl mx-auto" data-testid="testimonial-quote">
             <TypewriterQuote
-              text='Thanks to Rolplay, our commercial team significantly improved their results in just a few weeks. Customer experience improved notably.'
+              text={t('home.testimonialQuote')}
               start={quoteStart}
             />
           </blockquote>
           <div className="mt-10 flex items-center justify-center gap-4">
             <div className="w-10 h-px bg-[#C0392B]" />
-            <div className="font-mono text-[10px] tracking-[0.25em] text-zinc-400 uppercase">VERIFIED CLIENT · RETAIL</div>
+            <div className="font-mono text-[10px] tracking-[0.25em] text-zinc-400 uppercase">{t('home.testimonialLabel')}</div>
             <div className="w-10 h-px bg-[#C0392B]" />
           </div>
         </div>
@@ -433,10 +441,10 @@ export default function Home() {
       <section className="relative py-32" id="contact" data-testid="home-contact-section">
         <div className="max-w-[1100px] mx-auto px-6 lg:px-10 text-center">
           <SectionHeader
-            overline="GET IN TOUCH"
-            title="Contact Us"
+            overline={t('home.contactOverline')}
+            title={t('home.contactTitle')}
             redWord="Contact"
-            body="We're here to support you!"
+            body={t('home.contactBody')}
             align="center"
           />
           <div className="mt-12 flex justify-center">
@@ -447,7 +455,7 @@ export default function Home() {
             <span className="text-zinc-700">·</span>
             <a href="tel:+525550937376" className="text-zinc-300 hover:text-[#C0392B] transition" data-testid="home-contact-phone">+52 (55) 5093 7376</a>
             <span className="text-zinc-700">·</span>
-            <span className="font-mono text-[10px] tracking-[0.25em] text-[#C0392B] uppercase">Toronto · Monterrey · CDMX</span>
+            <span className="font-mono text-[10px] tracking-[0.25em] text-[#C0392B] uppercase">{t('home.contactLocations')}</span>
           </div>
         </div>
       </section>
