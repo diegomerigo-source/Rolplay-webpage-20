@@ -16,32 +16,54 @@ const links = [
 ];
 
 const Logo = () => (
-  <div className="flex items-center gap-2.5 group" data-testid="brand-logo">
-    <div className="relative w-9 h-9">
-      <svg viewBox="0 0 40 40" className="w-9 h-9">
-        <g stroke="#C0392B" strokeWidth="1" fill="none" opacity="0.95">
-          <circle cx="20" cy="6" r="2.4" fill="#C0392B" />
-          <circle cx="6" cy="14" r="2" fill="#C0392B" />
-          <circle cx="34" cy="14" r="2" fill="#C0392B" />
-          <circle cx="10" cy="30" r="2" fill="#fff" />
-          <circle cx="30" cy="30" r="2" fill="#fff" />
-          <circle cx="20" cy="22" r="2.6" fill="#C0392B" />
-          <line x1="20" y1="6" x2="6" y2="14" />
-          <line x1="20" y1="6" x2="34" y2="14" />
-          <line x1="6" y1="14" x2="20" y2="22" />
-          <line x1="34" y1="14" x2="20" y2="22" />
-          <line x1="20" y1="22" x2="10" y2="30" />
-          <line x1="20" y1="22" x2="30" y2="30" />
-          <line x1="10" y1="30" x2="30" y2="30" strokeOpacity="0.3" />
-        </g>
-      </svg>
-      <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-        style={{ boxShadow: "0 0 22px rgba(192,57,43,0.6)" }} />
-    </div>
-    <span className="font-display text-2xl tracking-tight">
-      <span className="text-[#C0392B]">Rol</span>
-      <span className="text-white">Play</span>
-    </span>
+  <div className="flex items-center group" data-testid="brand-logo">
+    {/* Inline SVG — transparent bg, no white box, hover glow via filter */}
+    <svg
+      viewBox="0 0 220 60"
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-9 w-auto transition-[filter] duration-500 group-hover:[filter:drop-shadow(0_0_10px_rgba(192,57,43,0.7))]"
+      aria-label="RolPlay logo"
+    >
+      {/* ── Brain / neural-network icon ── */}
+      {/* Edges (drawn first, behind nodes) */}
+      <g stroke="#C0392B" strokeWidth="1.6" strokeLinecap="round">
+        <line x1="10" y1="22" x2="20" y2="10" />
+        <line x1="10" y1="22" x2="8"  y2="34" />
+        <line x1="10" y1="22" x2="24" y2="28" />
+        <line x1="20" y1="10" x2="32" y2="8"  />
+        <line x1="20" y1="10" x2="34" y2="20" />
+        <line x1="32" y1="8"  x2="42" y2="16" />
+        <line x1="34" y1="20" x2="42" y2="16" />
+        <line x1="34" y1="20" x2="44" y2="30" />
+        <line x1="24" y1="28" x2="34" y2="20" />
+        <line x1="24" y1="28" x2="18" y2="40" />
+        <line x1="24" y1="28" x2="32" y2="42" />
+        <line x1="8"  y1="34" x2="18" y2="40" />
+        <line x1="44" y1="30" x2="32" y2="42" />
+      </g>
+      {/* Nodes */}
+      <circle cx="10" cy="22" r="5.2" fill="#C0392B" /> {/* dominant left node */}
+      <circle cx="20" cy="10" r="3.2" fill="#C0392B" />
+      <circle cx="32" cy="8"  r="2.6" fill="#C0392B" />
+      <circle cx="42" cy="16" r="2.8" fill="#C0392B" />
+      <circle cx="34" cy="20" r="2.4" fill="#C0392B" />
+      <circle cx="44" cy="30" r="2.2" fill="#C0392B" />
+      <circle cx="24" cy="28" r="3.0" fill="#C0392B" />
+      <circle cx="8"  cy="34" r="2.0" fill="#C0392B" />
+      <circle cx="18" cy="40" r="2.4" fill="#C0392B" />
+      <circle cx="32" cy="42" r="2.8" fill="#C0392B" />
+
+      {/* ── Logotype ── */}
+      <text
+        x="58" y="43"
+        fontFamily="'Cabinet Grotesk', 'Inter', sans-serif"
+        fontWeight="800"
+        fontSize="36"
+        letterSpacing="-0.5"
+      >
+        <tspan fill="#C0392B">Rol</tspan><tspan fill="#ffffff">Play</tspan>
+      </text>
+    </svg>
   </div>
 );
 
